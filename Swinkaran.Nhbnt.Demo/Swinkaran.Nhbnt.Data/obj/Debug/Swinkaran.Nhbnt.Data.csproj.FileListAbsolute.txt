@@ -1,0 +1,1 @@
+D:\Swinkaran\Learning\NHibernate\Swinkaran.Nhbnt.Demo\Swinkaran.Nhbnt.Data\bin\Debug\Swinkaran.Nhbnt.Data.exe.config
