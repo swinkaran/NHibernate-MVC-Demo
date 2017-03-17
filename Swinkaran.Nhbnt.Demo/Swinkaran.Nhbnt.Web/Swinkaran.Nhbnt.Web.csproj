@@ -198,7 +198,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Mappings\Book.hbm" />
+    <EmbeddedResource Include="Mappings\Book.hbm" />
     <Content Include="Models\hibernate.cfg" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Swinkaran.Nhbnt.Web.Models
+namespace Swinkaran.Nhbnt.Web
 {
     public class Book
     {
