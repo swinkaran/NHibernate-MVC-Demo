@@ -24,8 +24,9 @@ namespace Swinkaran.Nhbnt.Web.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+            IList<Book> books;
 
-            string connStr = @"Data Source=SRIKARAN\SQLTEEHEE;Initial Catalog=TestDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BookStoreDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             var cfg = new Configuration();
             cfg.DataBaseIntegration(x =>
             {
@@ -42,7 +43,8 @@ namespace Swinkaran.Nhbnt.Web.Controllers
             {
 
                 // Perform query to
-                var books = session.CreateCriteria<Book>().List<Book>();
+                books = session.CreateCriteria<Book>().List<Book>();
+
 
                 foreach (var book in books)
                 {
@@ -58,7 +60,7 @@ namespace Swinkaran.Nhbnt.Web.Controllers
             //    return View();
             //}
 
-            return View();
+            return View(books);
         }
 
         public ActionResult Contact()
