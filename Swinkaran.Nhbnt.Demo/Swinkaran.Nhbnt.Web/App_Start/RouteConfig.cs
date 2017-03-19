@@ -18,6 +18,13 @@ namespace Swinkaran.Nhbnt.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Book",
+                url: "Book/Book/{id}",
+                defaults: new { controller = "Book", action = "Details", id = UrlParameter.Optional }
+                );
+
         }
     }
 }

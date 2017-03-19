@@ -26,38 +26,9 @@ namespace Swinkaran.Nhbnt.Web.Controllers
             ViewBag.Message = "Your application description page.";
             IList<Book> books;
 
-            //string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BookStoreDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            //var cfg = new Configuration();
-            //cfg.DataBaseIntegration(x =>
-            //{
-
-            //    x.ConnectionString = connStr;
-            //    x.Driver<SqlClientDriver>();
-            //    x.Dialect<MsSql2012Dialect>();
-            //});
-            //cfg.AddAssembly(Assembly.GetExecutingAssembly());
-            //var sessionFactgory = cfg.BuildSessionFactory();
-
-            //using (var session = sessionFactgory.OpenSession())
-            //using (var tx = session.BeginTransaction())
-            //{
-
-            //    // Perform query to
-            //    books = session.CreateCriteria<Book>().List<Book>();
-
-
-            //    foreach (var book in books)
-            //    {
-            //        string title = book.Title;
-            //    }
-
-            //    tx.Commit();
-            //}
-
             using (ISession session = NHibernateSession.OpenSession())
             {
-                books= session.Query<Book>().ToList();
-                //return View();
+                books = session.Query<Book>().ToList();
             }
 
             return View(books);
