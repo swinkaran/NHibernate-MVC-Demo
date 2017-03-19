@@ -14,7 +14,7 @@ namespace Swinkaran.Nhbnt.Web
             var configuration = new Configuration();
             var configurationPath = HttpContext.Current.Server.MapPath(@"~\Models\hibernate.cfg.xml");
             configuration.Configure(configurationPath);
-            var employeeConfigurationFile = HttpContext.Current.Server.MapPath(@"~\Models\Book.hbm.xml");
+            var employeeConfigurationFile = HttpContext.Current.Server.MapPath(@"~\Mappings\Book.hbm.xml");
             configuration.AddFile(employeeConfigurationFile);
             ISessionFactory sessionFactory = configuration.BuildSessionFactory();
             return sessionFactory.OpenSession();
