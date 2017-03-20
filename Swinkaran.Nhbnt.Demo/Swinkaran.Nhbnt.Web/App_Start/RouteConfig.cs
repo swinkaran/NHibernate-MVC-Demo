@@ -13,10 +13,15 @@ namespace Swinkaran.Nhbnt.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(
+                name: "Books",
+                url: "Books/",
+                defaults: new { controller = "Book", action = "Index", id = UrlParameter.Optional }
+                );
 
             routes.MapRoute(
                 name: "Book",
-                url: "Book/Book/{id}",
+                url: "Books/{id}",
                 defaults: new { controller = "Book", action = "Details", id = UrlParameter.Optional }
                 );
 
