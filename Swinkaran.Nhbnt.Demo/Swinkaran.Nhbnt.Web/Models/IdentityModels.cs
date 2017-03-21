@@ -30,6 +30,6 @@ namespace Swinkaran.Nhbnt.Web.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Swinkaran.Nhbnt.Web.Book> Books { get; set; }
+        public System.Data.Entity.DbSet<Swinkaran.Nhbnt.Web.Models.Book> Books { get; set; }
     }
 }

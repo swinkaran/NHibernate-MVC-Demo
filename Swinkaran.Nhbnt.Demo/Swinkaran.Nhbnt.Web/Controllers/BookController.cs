@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Swinkaran.Nhbnt.Web.Models;
 
 namespace Swinkaran.Nhbnt.Web.Controllers
 {
@@ -27,7 +28,7 @@ namespace Swinkaran.Nhbnt.Web.Controllers
         // GET: Book/Details/5
         public ActionResult Details(int id)
         {
-            Book book = new Web.Book();
+            Book book = new Book();
 
             using (ISession session = NHibernateSession.OpenSession())
             {
@@ -49,11 +50,25 @@ namespace Swinkaran.Nhbnt.Web.Controllers
         {
             try
             {
+                Book book = new Book();
+                book.Id = 115;
+                book.Title = collection["Title"].ToString();
+                book.Genre = collection["Genre"].ToString();
+                book.Author = collection["Author"].ToString();
+
                 // TODO: Add insert logic here
+                using (ISession session = NHibernateSession.OpenSession())
+                {
+                    using (ITransaction transaction = session.BeginTransaction())
+                    {
+                        session.Save(book);
+                        transaction.Commit();
+                    }
+                }
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }
@@ -71,7 +86,21 @@ namespace Swinkaran.Nhbnt.Web.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                Book book = new Book();
+                book.Id = id;
+                book.Title = collection["Title"].ToString();
+                book.Genre = collection["Genre"].ToString();
+                book.Author = collection["Author"].ToString();
+
+                // TODO: Add insert logic here
+                using (ISession session = NHibernateSession.OpenSession())
+                {
+                    using (ITransaction transaction = session.BeginTransaction())
+                    {
+                        session.SaveOrUpdate(book);
+                        transaction.Commit();
+                    }
+                }
 
                 return RedirectToAction("Index");
             }
