@@ -15,13 +15,13 @@ namespace Swinkaran.Nhbnt.Web
 
             routes.MapRoute(
                 name: "Books",
-                url: "Books/",
+                url: "Book/",
                 defaults: new { controller = "Book", action = "Index", id = UrlParameter.Optional }
                 );
 
             routes.MapRoute(
                 name: "Book",
-                url: "Books/{id}",
+                url: "Book/Book/{id}",
                 defaults: new { controller = "Book", action = "Details", id = UrlParameter.Optional }
                 );
 
