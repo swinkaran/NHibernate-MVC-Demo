@@ -68,7 +68,7 @@ namespace Swinkaran.Nhbnt.Web.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return View();
             }
@@ -77,7 +77,14 @@ namespace Swinkaran.Nhbnt.Web.Controllers
         // GET: Book/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Book book = new Book();
+
+            using (ISession session = NHibernateSession.OpenSession())
+            {
+                book = session.Query<Book>().Where(b => b.Id == id).FirstOrDefault();
+            }
+
+            return View(book);
         }
 
         // POST: Book/Edit/5
@@ -113,7 +120,9 @@ namespace Swinkaran.Nhbnt.Web.Controllers
         // GET: Book/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            // Delete the book
+
+            return RedirectToAction("Index");
         }
 
         // POST: Book/Delete/5
