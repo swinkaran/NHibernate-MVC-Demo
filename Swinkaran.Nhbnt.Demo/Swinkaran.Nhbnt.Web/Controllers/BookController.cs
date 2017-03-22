@@ -84,6 +84,7 @@ namespace Swinkaran.Nhbnt.Web.Controllers
                 book = session.Query<Book>().Where(b => b.Id == id).FirstOrDefault();
             }
 
+            ViewBag.SubmitAction = "Save";
             return View(book);
         }
 
@@ -121,21 +122,35 @@ namespace Swinkaran.Nhbnt.Web.Controllers
         public ActionResult Delete(int id)
         {
             // Delete the book
-
-            return RedirectToAction("Index");
+            Book book = new Book();
+            using (ISession session = NHibernateSession.OpenSession())
+            {
+                book = session.Query<Book>().Where(b => b.Id == id).FirstOrDefault();
+            }
+            ViewBag.SubmitAction = "Confirm delete";
+            return View("Edit", book);
         }
 
         // POST: Book/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(long id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
+                using (ISession session = NHibernateSession.OpenSession())
+                {
+                    Book book = session.Get<Book>(id);
 
+                    using (ITransaction trans = session.BeginTransaction())
+                    {
+                        session.Delete(book);
+                        trans.Commit();
+                    }
+                }
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
                 return View();
             }
