@@ -17,9 +17,9 @@ namespace Swinkaran.Nhbnt.Web.Controllers
             ViewBag.Message = "Your application description page.";
             IList<Book> books;
 
-            using (ISession session = NHibernateSession.OpenSession())
+            using (ISession session = NHibernateSession.OpenSession())  // Open a session to conect to the database
             {
-                books = session.Query<Book>().ToList();
+                books = session.Query<Book>().ToList(); //  Querying to get all the books
             }
 
             return View(books);
@@ -50,7 +50,7 @@ namespace Swinkaran.Nhbnt.Web.Controllers
         {
             try
             {
-                Book book = new Book();
+                Book book = new Book();     //  Creating a new instance of the Book
                 book.Id = 115;
                 book.Title = collection["Title"].ToString();
                 book.Genre = collection["Genre"].ToString();
@@ -59,10 +59,10 @@ namespace Swinkaran.Nhbnt.Web.Controllers
                 // TODO: Add insert logic here
                 using (ISession session = NHibernateSession.OpenSession())
                 {
-                    using (ITransaction transaction = session.BeginTransaction())
+                    using (ITransaction transaction = session.BeginTransaction())   //  Begin a transaction
                     {
-                        session.Save(book);
-                        transaction.Commit();
+                        session.Save(book); //  Save the book in session
+                        transaction.Commit();   //  Commit the changes to the database
                     }
                 }
 
